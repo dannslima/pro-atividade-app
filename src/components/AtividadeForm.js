@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function AtividadeForm(props) {
-    return (
+    const[atividade, setAtividade] = useState({})
+    const inputTextHandler = (e) =>{
+        const {name, value} = e.target;
 
+        setAtividade({...atividade,[name]: value})
+    }
+
+    //Math.max.apply(Math, props.atividades.map(item => item.id)) + 1
+    return (
         <form className="row g-3">
             <div className="col-md-6">
-                <label className="form-label">
-                    Id
-                </label>
-                <input id='id' type="text" className="form-control"
-                    value={Math.max.apply(Math, props.atividades.map(item => item.id)) + 1} />
+                <label className="form-label"> Id  </label>
+                <input name='id'
+                id='id' 
+                onChange={inputTextHandler}
+                type="text" className="form-control"
+                    value={atividade.id}
+                />
             </div>
             <div className="col-md-6">
                 <label className="form-label">Prioridade</label>
